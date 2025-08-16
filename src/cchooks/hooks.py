@@ -6,7 +6,7 @@ from kb_cchook import hook
 from kb_cchook.constants import SUPPORTED_HOOK_EVENTS
 
 # Setup logging to file
-log_dir = "/tmp/cchooks.log"
+log_file = "/tmp/cchooks.log"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -23,10 +23,8 @@ def session_start(data: Dict[str, Any]) -> None:
 
 
 def stop(data: Dict[str, Any]) -> None:
-    logging.info("Claude Code session ended")
     try:
         subprocess.run(["afplay", "/System/Library/Sounds/Blow.aiff"], check=False)
-        logging.info("Played session end sound")
     except Exception as e:
         logging.error(f"Error playing sound: {e}")
 
